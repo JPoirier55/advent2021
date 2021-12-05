@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/jpoirier55/advent2021/day1"
+	"github.com/jpoirier55/advent2021/day2"
 	"github.com/jpoirier55/advent2021/file"
 	"os"
 )
@@ -19,8 +20,13 @@ func main() {
 		}
 	}
 	inputLines := file.ReadFile(inputFile)
-	if day == "day1" {
+	switch day {
+	case "day1":
 		day1.RunPart1(inputLines)
 		day1.RunPart2(inputLines)
+	case "day2":
+		day2.RunPart1(inputLines)
+		day2.RunPart2(inputLines)
 	}
+
 }
