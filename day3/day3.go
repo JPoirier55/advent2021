@@ -27,7 +27,6 @@ func RunPart1(inputLines []string) {
 			intVal, _ := strconv.Atoi(indVal)
 			binMap[i] += intVal
 		}
-		fmt.Println(binMap)
 	}
 	keys := make([]int, 0, len(binMap))
 
@@ -39,36 +38,79 @@ func RunPart1(inputLines []string) {
 	epsilon := ""
 	for _, k := range keys {
 		if binMap[k] > totalLines/2 {
-			fmt.Printf("%d : 1", k)
 			gamma += "1"
 			epsilon += "0"
 		}else {
-			fmt.Printf("%d : 0", k)
 			gamma += "0"
 			epsilon += "1"
 		}
-		fmt.Println()
 	}
-	fmt.Println(gamma)
-	fmt.Println(epsilon)
 	gammaDec := decimalFromBinary(gamma)
 	epsilonDec := decimalFromBinary(epsilon)
-	fmt.Println(gammaDec)
-	fmt.Println(epsilonDec)
 	fmt.Println(gammaDec*epsilonDec)
 }
 
 func RunPart2(inputLines []string) {
-	totalLines := 0
-	zeros := make([]string, 1)
-	ones := make([]string, 1)
-	for i, _ := range inputLines[0] {
-		fmt.Println(string(inputLines[0][i]))
-		for _, val := range inputLines {
-			fmt.Println(val)
+	oxygen := findOxygen(inputLines)
+	co2 := findC02(inputLines)
+	fmt.Println(oxygen)
+	fmt.Println(co2)
+	fmt.Println(oxygen*co2)
+}
+
+func findC02(inputLines []string) int {
+	current := make([]string, len(inputLines))
+	copy(current, inputLines)
+	for i := 0; i <= len(inputLines[0])-1; i++ {
+		zeros := make([]string, 0)
+		ones := make([]string, 0)
+		for j := 0; j <= len(current)-1; j++ {
+			if current[j][i] == '0' {
+				ones = append(ones, current[j])
+			} else {
+				zeros = append(zeros, current[j])
+			}
+		}
+		if len(ones) <= len(zeros) {
+			current = make([]string, len(ones))
+			copy(current, ones)
+		} else {
+			current = make([]string, len(zeros))
+			copy(current, zeros)
+		}
+		if len(current) == 1 {
+			co2 := decimalFromBinary(current[0])
+			return int(co2)
 		}
 	}
+	return 0
+}
 
-
-
+func findOxygen(inputLines []string) int {
+	current := make([]string, len(inputLines))
+	copy(current, inputLines)
+	for i := 0; i <= len(inputLines[0])-1; i++ {
+		zeros := make([]string, 0)
+		ones := make([]string, 0)
+		for j := 0; j <= len(current)-1; j++ {
+			if current[j][i] == '0' {
+				ones = append(ones, current[j])
+			} else {
+				zeros = append(zeros, current[j])
+			}
+		}
+		if len(ones) >= len(zeros) {
+			current = make([]string, len(ones))
+			copy(current, ones)
+		} else {
+			current = make([]string, len(zeros))
+			copy(current, zeros)
+		}
+		fmt.Println(current[0])
+		if len(current) == 1 {
+			oxygen := decimalFromBinary(current[0])
+			return int(oxygen)
+		}
+	}
+	return 0
 }
