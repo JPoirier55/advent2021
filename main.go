@@ -6,6 +6,7 @@ import (
 	"github.com/jpoirier55/advent2021/day2"
 	"github.com/jpoirier55/advent2021/day3"
 	"github.com/jpoirier55/advent2021/day4"
+	"github.com/jpoirier55/advent2021/day5"
 	"github.com/jpoirier55/advent2021/file"
 	"os"
 )
@@ -34,7 +35,10 @@ func main() {
 		day3.RunPart2(inputLines)
 	case "day4":
 		day4.RunPart1(inputLines)
-		//day4.RunPart2(inputLines)
+		day4.RunPart2(inputLines)
+	case "day5":
+		day5.RunPart1(inputLines)
+		day5.RunPart2(inputLines)
 	}
 
 }
