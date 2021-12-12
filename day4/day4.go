@@ -61,7 +61,7 @@ func playBingo(boardMap map[int][][]int, inputNumbers []int) int {
 						fmt.Println("WINNER")
 						fmt.Println(pickedNum)
 						fmt.Println(winner)
-						sum := sumArray(winner)
+						sum := sumArray(calledList, board[:5]) // Remove the vertical slices from the sum
 						fmt.Println(sum)
 						return pickedNum*sum
 					}
@@ -72,10 +72,23 @@ func playBingo(boardMap map[int][][]int, inputNumbers []int) int {
 	return 0
 }
 
-func sumArray(arr []int) int {
+func stringInSlice(a int, list []int) bool {
+	for _, b := range list {
+		if b == a {
+			return true
+		}
+	}
+	return false
+}
+
+func sumArray(arr []int, board [][]int) int {
 	sum := 0
-	for _, val := range arr {
-		sum += val
+	for _, boardX := range board {
+		for _, boardY := range boardX {
+			if !stringInSlice(boardY, arr) {
+				sum += boardY
+			}
+		}
 	}
 	return sum
 }
