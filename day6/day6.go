@@ -64,9 +64,6 @@ func RunPart2(inputLines []string) {
 		//fmt.Println(lanternFishRaw)
 	}
 	fmt.Println(sumArray(lanternFishRaw))
-
-
-
 }
 
 func sumArray(arr []int64) int64 {
