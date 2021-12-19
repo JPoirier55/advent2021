@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/jpoirier55/advent2021/day1"
+	"github.com/jpoirier55/advent2021/day10"
 	"github.com/jpoirier55/advent2021/day2"
 	"github.com/jpoirier55/advent2021/day3"
 	"github.com/jpoirier55/advent2021/day4"
@@ -55,6 +56,9 @@ func main() {
 	case "day9":
 		day9.RunPart1(inputLines)
 		day9.RunPart2(inputLines)
+	case "day10":
+		day10.RunPart1(inputLines)
+		day10.RunPart2(inputLines)
 	}
 
 }
